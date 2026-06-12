@@ -1,56 +1,588 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ECOJAM - Agronegócio & Sustentabilidade</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Ecojam | Ecossistema Agroecológico Sustentável</title>
+  <meta name="description" content="Ecojam: conscientização ecológica, educação ambiental e fortalecimento do comércio agroecológico. Cultivo sustentável, produtos in natura e comunidade.">
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #FCF9F0;   /* tom claro natural */
+      color: #2E2B22;
+      scroll-behavior: smooth;
+    }
+
+    /* paleta ecojam */
+    :root {
+      --primary-dark: #625D44;      /* verde terroso */
+      --primary-light: #e1d3ac;    /* areia dourada */
+      --accent-beige: #fff3d0;
+      --deep-wood: #3b351d;
+      --soft-white: #ffffff;
+      --highlight-gold: #c9b27c;
+      --text-body: #2b2a24;
+    }
+
+    /* container */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* tipografia */
+    h1, h2, h3, .logo, .nav-links a, .hero-sub {
+      font-family: 'Playfair Display', serif;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--primary-dark);
+      margin-bottom: 1rem;
+      position: relative;
+      display: inline-block;
+    }
+    h2:after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 70px;
+      height: 3px;
+      background: var(--highlight-gold);
+      border-radius: 4px;
+    }
+    .section-subtitle {
+      font-size: 1.1rem;
+      color: #5f5b4a;
+      margin-bottom: 2.5rem;
+      max-width: 700px;
+    }
+
+    /* Header / navbar */
+    header {
+      background: rgba(255, 245, 230, 0.96);
+      backdrop-filter: blur(2px);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+      position: sticky;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      border-bottom: 1px solid #ece3cf;
+    }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .logo a {
+      font-size: 1.9rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+    .logo span {
+      color: #b48c48;
+      font-weight: 600;
+    }
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 500;
+      color: #4a4532;
+      transition: 0.2s;
+      font-size: 1rem;
+    }
+    .nav-links a:hover {
+      color: var(--primary-dark);
+      border-bottom: 2px solid var(--highlight-gold);
+      padding-bottom: 4px;
+    }
+
+    /* hero */
+    .hero {
+      background: linear-gradient(105deg, #fff3e0 0%, #faeecf 100%);
+      padding: 4rem 0 5rem;
+      text-align: center;
+      border-bottom: 1px solid #e5d9be;
+    }
+    .hero-content h1 {
+      font-size: 4rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin-bottom: 0.5rem;
+    }
+    .hero-tagline {
+      font-size: 1.6rem;
+      font-weight: 500;
+      color: #8b7a54;
+      margin: 0.5rem 0;
+    }
+    .hero-badge {
+      background: var(--deep-wood);
+      display: inline-block;
+      color: var(--accent-beige);
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      margin-top: 1rem;
+    }
+    .btn-primary {
+      background-color: var(--primary-dark);
+      border: none;
+      color: white;
+      padding: 12px 28px;
+      font-weight: 600;
+      border-radius: 40px;
+      transition: 0.2s;
+      display: inline-block;
+      text-decoration: none;
+      margin-top: 2rem;
+      font-family: 'Inter', sans-serif;
+    }
+    .btn-primary:hover {
+      background-color: #4a462f;
+      transform: translateY(-2px);
+    }
+
+    /* seções gerais */
+    section {
+      padding: 5rem 0;
+      border-bottom: 1px solid #ede5d2;
+    }
+    .bg-light {
+      background-color: #fefaf0;
+    }
+
+    .grid-2cols {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+      margin-top: 2rem;
+    }
+    .card {
+      background: white;
+      border-radius: 28px;
+      padding: 2rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.03);
+      transition: 0.2s;
+      border: 1px solid #f0e7d4;
+    }
+    .card i {
+      font-size: 2.2rem;
+      color: var(--highlight-gold);
+      margin-bottom: 1rem;
+    }
+    .card h3 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      color: #4c462b;
+    }
+    .card p {
+      line-height: 1.5;
+      color: #42402e;
+    }
+
+    .list-feature {
+      list-style: none;
+      padding-left: 0;
+    }
+    .list-feature li {
+      margin-bottom: 1rem;
+      display: flex;
+      gap: 12px;
+      align-items: baseline;
+    }
+    .list-feature i {
+      color: var(--highlight-gold);
+      font-size: 1.2rem;
+      width: 24px;
+    }
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid var(--primary-dark);
+      color: var(--primary-dark);
+      padding: 8px 20px;
+      border-radius: 30px;
+      font-weight: 500;
+      transition: 0.2s;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn-outline:hover {
+      background: var(--primary-dark);
+      color: white;
+    }
+
+    /* área de cultivo / dicas */
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px,1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    .tip-item {
+      background: var(--accent-beige);
+      padding: 1.5rem;
+      border-radius: 24px;
+      transition: 0.2s;
+    }
+    .tip-item h4 {
+      font-weight: 700;
+      font-size: 1.3rem;
+      margin-bottom: 0.75rem;
+      color: #5e5a40;
+    }
+
+    /* footer */
+    footer {
+      background: #2d2a1f;
+      color: #ddd8c4;
+      padding: 3rem 0 2rem;
+      text-align: center;
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin: 1rem 0;
+    }
+    .footer-links a {
+      color: #ddd0ae;
+      text-decoration: none;
+    }
+    hr {
+      border-color: #5f5a44;
+      margin: 2rem 0;
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+      }
+      .hero-content h1 {
+        font-size: 2.7rem;
+      }
+      .container {
+        padding: 0 20px;
+      }
+      h2 {
+        font-size: 2rem;
+      }
+    }
+    .inline-highlight {
+      color: var(--primary-dark);
+      font-weight: 600;
+    }
+  </style>
 </head>
 <body>
 
-    <!-- Menu Superior Dinâmico -->
-    <header class="menu-topo">
-        <div class="logo-container">
-            <img src="logo.png" alt="Logo ECOJAM" class="logo-img">
-            <span class="logo-texto">ECOJAM</span>
+<header>
+  <div class="navbar container" style="max-width: 1280px; margin: 0 auto;">
+    <div class="logo">
+      <a href="#">ECO<span>JAM</span></a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#inicio">Início</a></li>
+      <li><a href="#quem-somos">Quem somos</a></li>
+      <li><a href="#diferencial">Diferenciais</a></li>
+      <li><a href="#educacao">Educação</a></li>
+      <li><a href="#comercio">Comércio</a></li>
+      <li><a href="#cultivo">Cultivo</a></li>
+      <li><a href="#produtos">Produtos</a></li>
+      <li><a href="#comunidade">Comunidade</a></li>
+    </ul>
+  </div>
+</header>
+
+<main>
+  <!-- Hero / PÁGINA INICIAL -->
+  <section id="inicio" class="hero">
+    <div class="container hero-content">
+      <h1>ECOJAM</h1>
+      <div class="hero-tagline">agronegócio · sustentabilidade · &</div>
+      <div class="hero-badge">🌱 consciência ecológica em movimento</div>
+      <a href="#cultivo" class="btn-primary">🌿 Explorar cultivo sustentável</a>
+    </div>
+  </section>
+
+  <!-- Quem somos? (texto extraído do JSON) -->
+  <section id="quem-somos">
+    <div class="container">
+      <h2>Quem somos?</h2>
+      <div class="grid-2cols">
+        <div class="card">
+          <i class="fas fa-seedling"></i>
+          <h3>Ecossistema Ecojam</h3>
+          <p>Bem-vindo à Ecojam! Somos um ecossistema que une conscientização ecossustentável, educação ambiental e o fortalecimento do comércio agroecológico. Nosso propósito é semear conhecimento para construir um futuro mais verde e conectado.</p>
         </div>
-        <nav class="navegacao">
-            <ul>
-                <li><a href="#comercio">comércio</a></li>
-                <li><a href="#educacao">educação</a></li>
-                <li><a href="#cultivo">cultivo sustentável</a></li>
-                <li><a href="#produtos">produtos</a></li>
-                <li><a href="#marketplace">marketplace</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <!-- Banner Principal -->
-    <section class="banner-hero">
-        <div class="banner-conteudo">
-            <div class="emblema-lateral">
-                <img src="logo.png" alt="Emblema ECOJAM" class="emblema-img">
-            </div>
-            <div class="titulos-principais">
-                <h1>agronegócio & sustentabilidade</h1>
-                <p>juntos por um futuro melhor</p>
-            </div>
+        <div class="card">
+          <i class="fas fa-hand-holding-heart"></i>
+          <h3>Missão & valores</h3>
+          <p>Conectar pessoas, produtores e saberes através da agricultura familiar e do consumo consciente, valorizando cada etapa da cadeia produtiva — da semente à mesa.</p>
+          <a href="#comercio" class="btn-outline" style="margin-top: 1rem; display: inline-block;">Conheça nosso mercado</a>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Corpo do Conteúdo do Site -->
-    <main class="conteudo-site">
-        <section id="sobre" class="secao-texto">
-            <h2>O Projeto ECOJAM</h2>
-            <p>Este espaço é dedicado ao desenvolvimento de práticas sustentáveis no agronegócio, conectando soluções ecológicas, produtos de qualidade e educação do campo para criar um equilíbrio real entre produção e preservação ambiental.</p>
-        </section>
-    </main>
+  <!-- O que encontrará aqui? (conteúdo direto do design) -->
+  <section id="diferencial" class="bg-light">
+    <div class="container">
+      <h2>O que encontrará aqui?</h2>
+      <div class="grid-2cols">
+        <div class="card">
+          <i class="fas fa-chalkboard-user"></i>
+          <h3>Aprendizado Prático</h3>
+          <p>Dicas essenciais de cultivo e forte integração com a educação ambiental, apoiando iniciativas como o projeto Ficiências. Guias, vídeos e conteúdos para hortas urbanas e rurais.</p>
+        </div>
+        <div class="card">
+          <i class="fas fa-apple-alt"></i>
+          <h3>Produtos In Natura</h3>
+          <p>Uma curadoria especial de alimentos frescos, saudáveis e direto da agricultura familiar para você. Mel, própolis, oleaginosas, frutas e muito mais.</p>
+        </div>
+        <div class="card">
+          <i class="fas fa-store"></i>
+          <h3>Mercado Dinâmico</h3>
+          <p>Nosso grande diferencial: um marketplace online que conecta você a produtores regionais e nacionais da agricultura familiar, fortalecendo economias locais.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!-- Rodapé Obrigatório do Edital -->
-    <footer class="rodape-projeto">
-        <p>Desenvolvido para o Concurso Agrinho 2026 | Subcategoria: Front-End</p>
-        <p>1° Ano do Ensino Médio - Colégio Estadual do Paraná</p>
-    </footer>
+  <!-- Comunidade Ecojam -->
+  <section id="comunidade">
+    <div class="container">
+      <h2>Comunidade</h2>
+      <div class="card" style="background: var(--accent-beige);">
+        <p style="font-size: 1.2rem; line-height: 1.5;">🌾 Na Ecojam, valorizamos a economia local e o agronegócio sustentável. Aqui, você também pode abrir seu espaço para vender sua própria produção. Juntos, formamos uma comunidade forte, diversa, rica e completamente natural — exatamente como uma boa geleia.<br><br> <strong>Junte-se à rede que transforma o agro com consciência.</strong></p>
+        <div style="margin-top: 1.5rem;">
+          <a href="#" class="btn-primary" style="background: #8b7a54;">Faça parte →</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <!-- EDUCAÇÃO (dados dos projetos estaduais) -->
+  <section id="educacao" class="bg-light">
+    <div class="container">
+      <h2>Educação ambiental & projetos</h2>
+      <p class="section-subtitle">A educação transforma o futuro sustentável. Conheça as fundações e feiras de ciências que unem escola, agroecologia e inovação.</p>
+      <div class="tips-grid">
+        <div class="tip-item">
+          <i class="fas fa-school-circle-check" style="font-size: 2rem;"></i>
+          <h4>São Paulo - SP</h4>
+          <p>Hortas escolares e programa de alimentação nutricional — referência em educação alimentar.</p>
+          <a href="https://educacao.sme.prefeitura.sp.gov.br/programa-de-alimentacao-escolar/educacao-alimentar-e-nutricional/hortas-escolares/" target="_blank" class="btn-outline" style="margin-top: 10px; display: inline-block;">saiba mais</a>
+        </div>
+        <div class="tip-item">
+          <i class="fas fa-flask"></i>
+          <h4>Paraná - PR</h4>
+          <p>FICIÊNCIAS 2026: maior feira de ciências do estado, aberta para projetos sustentáveis e tecnológicos.</p>
+          <a href="https://ficiencias.org/" target="_blank" class="btn-outline">acessar feira</a>
+        </div>
+        <div class="tip-item">
+          <i class="fas fa-tree"></i>
+          <h4>Bahia - BA</h4>
+          <p>Educação baiana pioneira na promoção da sustentabilidade, com boletins Ceasa e ações inclusivas.</p>
+          <a href="https://www.ba.gov.br/comunicacao/2024/06/noticias/educacao-baiana-e-pioneira-na-promocao-da-sustentabilidade" target="_blank" class="btn-outline">notícia</a>
+        </div>
+        <div class="tip-item">
+          <i class="fas fa-globe-americas"></i>
+          <h4>Itaipu + Paraná</h4>
+          <p>Projeto "Ciência do Clima lá em casa" — intercâmbio entre Belém-PA e Foz-PR com foco ambiental.</p>
+          <a href="https://www.itaipu.gov.br/noticias/sala-de-imprensa/projeto-educacional-leva-ciencia-climatica-para-as-casas-e-familias-de-estudantes" target="_blank" class="btn-outline">projeto Itaipu</a>
+        </div>
+      </div>
+      <div style="text-align: center; margin-top: 2rem;">
+        <span class="inline-highlight">🌱 Consulte a FEBRACE para feiras de ciências nacionais: </span>
+        <a href="https://febrace.org.br" target="_blank" style="color: #625D44; font-weight: 600;">febrace.org.br</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMÉRCIO + setores agrícolas (hortifrúti, cereais, naturais) -->
+  <section id="comercio">
+    <div class="container">
+      <h2>Comércio agroecológico</h2>
+      <p class="section-subtitle">Conectamos o seu negócio direto com a origem. Escolha uma categoria para iniciar suas cotações e compras.</p>
+      <div class="grid-2cols">
+        <div class="card">
+          <i class="fas fa-carrot"></i>
+          <h3>Hortifrúti</h3>
+          <p>Monitore o mercado atacadista nacional, encontre fornecedores de hortigranjeiros na sua região e acompanhe cotações Ceasa.</p>
+          <a href="#" class="btn-outline">Acessar setor →</a>
+        </div>
+        <div class="card">
+          <i class="fas fa-wheat-awn"></i>
+          <h3>Cereais e Grãos</h3>
+          <p>Da terra para sua mesa: qualidade garantida. Arroz, feijão, milho, oleaginosas e muito mais com distribuição B2B.</p>
+          <a href="#" class="btn-outline">Fornecedores →</a>
+        </div>
+        <div class="card">
+          <i class="fas fa-jar"></i>
+          <h3>Produtos Naturais</h3>
+          <p>Mel, própolis, pinhão, castanhas e alimentos in natura. Seleção criteriosa e frescor garantido.</p>
+          <a href="#" class="btn-outline">comprar agora</a>
+        </div>
+      </div>
+      <div style="margin-top: 2.5rem; background: #e7ddc3; border-radius: 28px; padding: 1.5rem 2rem;">
+        <h3 style="font-size: 1.6rem;">📍 Centrais de abastecimento por região</h3>
+        <div style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between; margin-top: 1rem;">
+          <div><strong>Sul</strong><br> CEASA/RS • CEASA/SC • CEASA/PR</div>
+          <div><strong>Sudeste</strong><br> CEAGESP (SP) • Ceasa/RJ • CeasaMinas • Ceasa/ES</div>
+          <div><strong>Centro-Oeste</strong><br> CEASA-GO • CEASA-MS • CEASA-DF</div>
+          <div><strong>Nordeste</strong><br> CEASA/BA • CEASA/CE • CEASA/PE • Nova Ceasa/PI</div>
+          <div><strong>Norte</strong><br> CEASA/PA • CONAB • Portal Lab63/TO</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CULTIVO SUSTENTÁVEL (guia prático extraído do design) -->
+  <section id="cultivo" class="bg-light">
+    <div class="container">
+      <h2>Cultivo sustentável</h2>
+      <p class="section-subtitle">Aprenda práticas regenerativas, desde o planejamento do solo até o controle biológico de pragas. Guia passo a passo.</p>
+      <div class="tips-grid">
+        <div class="tip-item">
+          <h4>🌱 Planejamento e solo</h4>
+          <p>Análise do solo, compostagem orgânica, adubos verdes e cobertura com palhada para reter umidade.</p>
+        </div>
+        <div class="tip-item">
+          <h4>💧 Manejo de água</h4>
+          <p>Irrigação por gotejamento, captação de chuva e irrigação nos horários mais frescos para eficiência hídrica.</p>
+        </div>
+        <div class="tip-item">
+          <h4>🔄 Escolha de culturas</h4>
+          <p>Rotação de culturas, consorciação e variedades nativas adaptadas à região — produtividade com equilíbrio.</p>
+        </div>
+        <div class="tip-item">
+          <h4>🐞 Controle de pragas</h4>
+          <p>Monitoramento, introdução de inimigos naturais (joaninhas, vespas) e defensivos biológicos.</p>
+        </div>
+      </div>
+      <div class="card" style="background: #fcf6e8; margin-top: 1rem;">
+        <h3>🌿 Faça você mesmo: gestão de resíduos e recipientes</h3>
+        <p>Compostagem com cascas e borra de café, reutilização de garrafas pet e caixas de leite como vasos, e verticalização para pequenos espaços. Aproveite paredes com treliças e garanta drenagem adequada.</p>
+        <a href="https://www.youtube.com/watch?v=mXLXjBsHryY" target="_blank" class="btn-outline" style="margin-top: 12px;">▶️ Assista ao guia prático</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUTOS: inspirado no setor de higiene e decoração ecológica -->
+  <section id="produtos">
+    <div class="container">
+      <h2>Produtos & bem-estar</h2>
+      <div class="grid-2cols">
+        <div class="card">
+          <i class="fas fa-spa"></i>
+          <h3>Higiene natural</h3>
+          <p>Esfoliantes corporais, óleos capilares e perfumes à base de ingredientes botânicos. Parcerias com marcas sustentáveis.</p>
+          <ul class="list-feature">
+            <li><i class="fas fa-check-circle"></i> Esfoliantes com borra de café</li>
+            <li><i class="fas fa-check-circle"></i> Óleos vegetais orgânicos</li>
+          </ul>
+        </div>
+        <div class="card">
+          <i class="fas fa-palette"></i>
+          <h3>Decoração ecológica</h3>
+          <p>Cadeiras de madeira reflorestada, luminárias eco design, vasos recicláveis e arte com materiais in natura.</p>
+          <a href="#" class="btn-outline">ver coleção</a>
+        </div>
+        <div class="card">
+          <i class="fas fa-store-alt"></i>
+          <h3>Marketplace parceiro</h3>
+          <p>Vendedores certificados, produtos agroecológicos direto da agricultura familiar e itens de agroindústria.</p>
+          <a href="#" class="btn-outline">ir para lojas</a>
+        </div>
+      </div>
+      <!-- área de produtos em destaque (texto adicional) -->
+      <div style="margin-top: 2.5rem; text-align: center; background: #fff3df; border-radius: 40px; padding: 1.8rem;">
+        <p style="font-size: 1.2rem;"><strong>⭐ Em alta: </strong>Mel orgânico com própolis · Castanhas e grãos especiais · Pinhão in natura · Kits de horta doméstica</p>
+        <a href="#" class="btn-primary" style="background: #735e3a;">Ver lançamentos</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARKETING / comunidade de vendas -->
+  <section class="bg-light">
+    <div class="container">
+      <h2>Marketing & rede colaborativa</h2>
+      <div class="grid-2cols">
+        <div class="card">
+          <i class="fas fa-chart-line"></i>
+          <h3>Seu espaço no agro</h3>
+          <p>Crie seu perfil de vendedor, gerencie pedidos e alcance consumidores conscientes. A Ecojam potencializa conexões entre produtores e compradores.</p>
+          <a href="#" class="btn-outline">editar perfil →</a>
+        </div>
+        <div class="card">
+          <i class="fas fa-tags"></i>
+          <h3>Últimas vendas</h3>
+          <p>Resumo mensal, status de pedidos e produtos mais procurados no setor agro, hortifrúti e produtos naturais.</p>
+          <div style="font-size: 0.9rem;">📦 pedidos pendentes: 5 | 🚛 em transporte: 2 | ✅ concluídos: 10</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="logo" style="margin-bottom: 1rem;">ECO<span style="color:#d3bc8a;">JAM</span></div>
+    <div class="footer-links">
+      <a href="#">Sobre</a>
+      <a href="#">Educação</a>
+      <a href="#">Comércio</a>
+      <a href="#">Cultivo</a>
+      <a href="#">Produtos</a>
+      <a href="#">Imprensa</a>
+      <a href="#">Contato</a>
+    </div>
+    <p style="font-size: 0.85rem; margin-top: 1.5rem;">🌍 Ecossistema de conscientização e comércio agroecológico | Ecojam — semear conhecimento para um futuro verde</p>
+    <hr>
+    <p style="font-size: 0.8rem;">© 2026 Ecojam · Todos os direitos reservados · Agricultura familiar, sustentabilidade e inovação</p>
+  </div>
+</footer>
+
+<!-- scroll suave e interação mínima -->
+<script>
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const href = this.getAttribute('href');
+      if(href === "#" || href === "") return;
+      const target = document.querySelector(href);
+      if(target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
 </body>
 </html>
